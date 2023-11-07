@@ -35,6 +35,7 @@ async function run() {
     await client.connect();
 
     const blogCollection = client.db('blogsDB').collection("blogs");
+    const suggestionCollection = client.db('blogsDB').collection("suggestion");
 
     app.get('/addBlog', async (req, res) => {
       const cursor = blogCollection.find();
@@ -50,13 +51,26 @@ async function run() {
       res.send(result); 
     })
 
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    // await client.close();
-  }
+
+
+  
+  //for suggestion form
+  app.post('/suggestion', async (req, res) => {
+    const newSuggestion = req.body;
+    const result = await suggestionCollection.insertOne(newSuggestion);
+    res.send(result); 
+  })
+
+    
+    
+    
+  // Send a ping to confirm a successful connection
+  await client.db("admin").command({ ping: 1 });
+  console.log("Pinged your deployment. You successfully connected to MongoDB!");
+} finally {
+  // Ensures that the client will close when you finish/error
+  // await client.close();
+}
 }
 run().catch(console.dir);
 
