@@ -35,6 +35,7 @@ async function run() {
     await client.connect();
 
     const blogCollection = client.db('blogsDB').collection("blogs");
+    const commentCollection = client.db('blogsDB').collection("comment");
     const suggestionCollection = client.db('blogsDB').collection("suggestion");
 
     app.get('/addBlog', async (req, res) => {
@@ -48,19 +49,30 @@ async function run() {
       const blogID = req.params._id;
       const idObject = new ObjectId (blogID)
       const result = await blogCollection.findOne(idObject);
-      console.log(result);
       res.send(result); 
+    })
+
+    //Get specific blog comment
+    app.get('/comment', async (req, res) => {
+      const commentFound = commentCollection.find();
+      const result = await commentFound.toArray();
+      res.send(result);
     })
 
 
     app.post('/addBlog', async (req, res) => {
       const newBlog = req.body;
-      console.log(newBlog);
       const result = await blogCollection.insertOne(newBlog);
       res.send(result); 
     })
 
 
+     //for comment form
+  app.post('/comment', async (req, res) => {
+    const newComment = req.body;
+    const result = await commentCollection.insertOne(newComment);
+    res.send(result); 
+  })
 
   
   //for suggestion form
