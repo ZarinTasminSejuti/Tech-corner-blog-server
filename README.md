@@ -7,12 +7,11 @@ Welcome to the server side repository of Tech Corner - a platform for exploring 
 This server side is built to handle authentication, blog management, and data storage for the Tech Corner project.
 
 ## Technologies Used
-Node.js: The server side is powered by Node.js, providing a runtime for JavaScript on the server.
-Express.js: We use Express.js as the web application framework to handle routing and middleware.
-MongoDB: MongoDB serves as the database to store blog details, user information, and other relevant data.
-Firebase Authentication: User authentication is handled using Firebase Authentication, providing secure and easy-to-integrate authentication methods.
-
-
+ 
+    - Node.js: The server side is powered by Node.js, providing a runtime for JavaScript on the server.
+    - Express.js: We use Express.js as the web application framework to handle routing and middleware.
+    - MongoDB: MongoDB serves as the database to store blog details, user information, and other relevant data.
+    - Firebase Authentication: User authentication is handled using Firebase Authentication, providing secure and easy-to-integrate authentication methods.
 
 ## Project Feature
 - `Login Page` 
